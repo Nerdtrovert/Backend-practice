@@ -1,18 +1,21 @@
 package com.example.demo.model;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 @Entity
-public class Task{
+public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
-    private String status; // "TODO", "IN_PROGRESS", "DONE"
+    private String description;
+    private Boolean completed; // ✅ Boolean wrapper (not primitive) so PATCH can detect null
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -29,11 +32,19 @@ public class Task{
         this.title = title;
     }
 
-    public String getStatus() {
-        return status;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
     }
 }
